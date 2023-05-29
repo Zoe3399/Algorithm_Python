@@ -1,0 +1,51 @@
+import sys
+
+# 문제.       
+# 해당 노드에 방문했으면, 방문 순서 기록
+# 방문하지 않은 노드일 경우 c+1 하고 dfs 재귀
+
+# 0. 입력 및 초기화
+input = sys.stdin.readline
+sys.setrecursionlimit(10**9) # 이거 써야 재귀오류 안난다해서,,ㅎ
+
+# 정점의 수, 간선의 수, 시작 정점
+n, m ,r = map(int, input().split())
+
+#
+graph = [[ ] for _ in range( n + 1) ]
+
+# 방문 순서 저장. 0이면 방문 x
+
+#q. 방문할 수 없는 노드이면 0으로 출력하라
+visited = [0] * (n + 1) #1~n까지 노드 모드 0으로 초기화
+
+cnt = 1 # 방문순서
+
+for _ in range(m):
+    a,b = map(int, input().split())
+    # 양방향 간선
+    graph[a].append(b)
+    graph[b].append(a)
+    # >> 그래프의 정보 입력 완료
+    
+def dfs(graph, b, visited):
+    global cnt
+    visited[b] = cnt # 방문하면 순서 나타내기
+
+    # 방문여부 확인
+    for i in graph[b]:
+        # 방문 안한 노드일 경우
+        if visited[i] == 0:
+            cnt+= 1 # cnt 1증가
+            dfs(graph, i, visited) # 재귀
+    
+# 오름차순으로 인접노드 방문하기 위해 정렬
+for i in range(n+1): 
+    graph[i].sort()
+
+# dsf
+dfs(graph, r, visited)
+
+# 해당 노드를 몇 번째로 방문했는지 출력
+for i in range(1, n+1):
+    print(visited[i])
