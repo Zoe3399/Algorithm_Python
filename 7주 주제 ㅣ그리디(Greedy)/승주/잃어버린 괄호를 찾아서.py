@@ -4,6 +4,8 @@ num = [sum(map(int,i.split('+'))) for i in a[1:]]
 for i in num: res-=i
 print(res)   
 
+
+
 ''' 
 a = input().split('-')
 res = sum(map(int,a[0].split('+')))
@@ -11,6 +13,8 @@ for i in a[1:]:
     num = sum(map(int,i.split('+')))
     res -= num
 print(res)   
+
+
 
 [ 코드 더 간단하게 만들기 ]
 # 문자열 입력받기
@@ -26,8 +30,9 @@ for i in a[1:]:
 print(res)    
 
 
-# 문자열 입력받기
+
 [ 처음 작성한 코드 ]
+# 문자열 입력받기
 a = input().split('-')
 number = []
 for i in a:
